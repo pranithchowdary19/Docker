@@ -56,7 +56,28 @@ Docker registry:-
 Docker Images:-
 --------------
 
----> Docker image is a read-only template with instruction to create a docker container.(To build your own image you create a dockerfile.)
+---> Docker image is a read-only template with instructions to create a docker container.(To build your own image you create a dockerfile.)
+
+---> The images are stored in the registry (Docker Hub).
+
+---> A single image can be used to create multiple containers.
+
+---> Docker Images ---> This command is used to list out all the images on our system.  
+
+---> Docker images -q ---> This command is used to list out only image id's. (-q Means quiet Tag. It only shows numeric id's.)
+
+---> Docker images -f ---> This is a filter command. (-f menas filter Tag. Filter output based on condition provided.)
+Eg:- Docker Images -f "dangling=false/true"
+
+---> "Dangling Images" ---> Dangling images are the images which are associated with the container or a running container.
+
+---> Docker inspect imageid/image name ---> This command is used to gives all the details of image like id,tags,host name,domain name,layers Etc.
+
+*** Image typically contains a union of layered filesystems stacked on top of each other.
+
+---> Docker rmi <imageid/name> ---> This command is used to delete the specific image.
+
+---> Docker rmi -f <imageid/name> ---> To delete the image forcely.
 
 
 Docker Container:-
