@@ -1,0 +1,69 @@
+Docker :- Docker is an open platform for developing,shipping and running the applications.Docker enable you to separe your applications from your infrastructure so we can delivery software quickly.
+------
+--->with docker we can manage your infrastructure in the same ways we can manage your applications.
+--->By taking advantages of docker methodologies,for shipping,testing and deploying code quickly,you can significantly reduce the delay time between writing the code and running it in production.
+
+
+What can i use docker for...?
+
+--->Fast and consistent delivery of your software.
+--->Docker streamlines the development lifecycle by allowing the developer to work in standardized environment using local containers which provides your applications and services.
+--->Docker is great for continuous integration and continuous delivery (CI/CD) workflows. 
+
+Eg:-
+---
+
+---> Your developer write code locally and share thier code with peer developers by using docker containers.
+---> They use docker to push thier application into test environment for execute automated and manual tests.
+---> If the developer finds a bug,it fixes in the development enviroment and again redelopy into test environment for validation.
+---> When the testing is complete, getting the fix to the customer is simple as pushing the updated images to the production.
+
+
+Running more workloads on the same software:-
+---------------------------------------------
+
+---> Docker is lightweight and fast. it provides a viable and cost-effective alternative to hypervisor-based virtual machines, so we can use more of your compute capacity to achieve your business goals.
+---> Docker is great for high density environments and for small and medium deployments where we need to do more with fewer resources.
+
+
+Docker Architecture
+-------------------
+
+---> Docker uses the client server architecture. (Client ---> Command prompt), (Sever ---> Docker Daemon).
+---> Docker client talks to the docker daemon which does the heavy lifting like building, shipping, and distributing your docker containers.
+---> The docker client and docker daemon can run on the same system or we can connect docker client with remote docker daemon.
+
+Docker Daemon:-
+--------------
+
+---> (Dockerd) docker daemon listens for docker API requests and manges the docker objects such as, Images, Containers, Networks and Volumes.
+---> A daemon can also communicate with other daemons to manage the docker services.
+
+Docker Client:-
+--------------
+
+---> (Docker) Docker Client is a primary way that many docker users can intract with docker.
+---> When we use commands, The docker client send these command to dockerd which carries them out.
+
+Docker registry:-
+-----------------
+
+---> A docker registry stores the docker images. Docker hub is a public registry that anyone can use, Docker is configured to look for docker images on docker hub by default.You can run your own private registry.
+
+---> When you use docker pull or docker run commands, The requried images are pulled from your configured registry. When you use docker push command, Your image is pushed to configured registry.
+
+
+Docker Images:-
+--------------
+
+---> Docker image is a read-only template with instruction to create a docker container.(To build your own image you create a dockerfile.)
+
+
+Docker Container:-
+------------------
+
+A container is an runnable instance of an image. You can create, start, stop, move, delete a container using the docker API or CLI.
+
+
+
+
