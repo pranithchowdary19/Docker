@@ -1,4 +1,4 @@
-Docker :- Docker is an open platform for developing,shipping and running the applications.Docker enable you to separe your applications from your infrastructure so we can delivery software quickly.
+ Docker :- Docker is an open platform for developing,shipping and running the applications.Docker enable you to separe your applications from your infrastructure so we can delivery software quickly.
 ------
 --->with docker we can manage your infrastructure in the same ways we can manage your applications.
 --->By taking advantages of docker methodologies,for shipping,testing and deploying code quickly,you can significantly reduce the delay time between writing the code and running it in production.
@@ -62,7 +62,13 @@ Docker Images:-
 
 ---> A single image can be used to create multiple containers.
 
----> Docker Images ---> This command is used to list out all the images on our system.  
+---> Docker Images ---> This command is used to list out all the images on our system.
+
+---> Docker pull <image Name> ---> This command is used to pull the image from registry (Docker Hub).
+
+---> Docker pull <Image Name>:Tag ---> This  his command is used to pull the image from registry with specified Tag (Docker Hub).
+
+Eg:- Docker pull ubuntu:18.2.1
 
 ---> Docker images -q ---> This command is used to list out only image id's. (-q Means quiet Tag. It only shows numeric id's.)
 
@@ -83,7 +89,48 @@ Eg:- Docker Images -f "dangling=false/true"
 Docker Container:-
 ------------------
 
-A container is an runnable instance of an image. You can create, start, stop, move, delete a container using the docker API or CLI.
+---> A container is an runnable instance of an image. You can create, start, stop, move, delete a container using the docker API or CLI.
+---> From one image we can create multiple containers.
+
+---> Docker Run ImageName ---> This command does, if you don't have that specified image locally on your dockerd than it pulls from registry and creates a container. But the created container wont run.
+---> Docker run -it ImageName ---> This command does, if you don't have that specified image locally on your dockerd than it pulls from registry and creates a container. And the created container will run. (-it means Interactive Terminal).
+---> If we use -it than always new container will be created.
+
+---> Docker run -it <imageid> ---> This command is used to create a container and enters into it.
+---> Docker ps ---> This command list out the all running containers.
+---> Docker ps -a ---> This command list out the containers.
+---> Docker Start <Containerid/Name> ---> This command starts the stopped container.
+Eg:- Docker start cb797348bfbc
+---> Docker Stop <Containerid/Name> ---> This command stops the running container.
+Eg:- Docker stop cb797348bfbc
+---> Docker Pause <ContainerId> ---> It pause the running container. It won't take any inputs from client.
+---> Docker unpause <ContainerId> ---> It unpauses the paused container. Then it accepts the inputs from client.
+
+**How to enter into a exited container?
+---> There are two ways.
+1. Docker Attach <Containerid> ---> After exiting the container we have start that container first. To enter into a container.
+Eg:- Docker Attach cb797348bfbc
+
+2. In second way :- Exiting means stopping the container so we have to start that container first. And then use this command.
+Syntax:- docker exec -it <ContainerID> /bin/bash
+Eg :- Docker exec -it cb797348bfbc /bin/bash
+
+---> Docker Kill <ContainerId> ---> This command is used to kill the container. Kill action is nothing but exiting from container.
+Eg:- Docker kill cb797348bfbc
+---> Docker rm <ContainerId> ---> This command is used to delete the container.
+Eg:- Docker rm cb797348bfbc
+** Running container won't be deleted. If you want to delete the running container we have to stop that container are we delete forcely.
+
+Syntax:- Docker rm -f <ContainerId>
+Eg:- Docker rm -f cb797348bfbc
+
+
+
+
+
+
+
+
 
 
 
