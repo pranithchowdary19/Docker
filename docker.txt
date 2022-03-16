@@ -85,44 +85,113 @@ Eg:- Docker Images -f "dangling=false/true"
 
 ---> Docker rmi -f <imageid/name> ---> To delete the image forcely.
 
+Ques :- What if i want to delete a image and that image is reference to a container?
+
+Ans :- It won't possible to delete a image because some containers are created from that image.
+---> If we want to delete that image than we need stop that container first and delete forcely that Image or Delete the container first and delete that image.
+
 
 Docker Container:-
 ------------------
 
 ---> A container is an runnable instance of an image. You can create, start, stop, move, delete a container using the docker API or CLI.
+
 ---> From one image we can create multiple containers.
 
----> Docker Run ImageName ---> This command does, if you don't have that specified image locally on your dockerd than it pulls from registry and creates a container. But the created container wont run.
+---> Docker Run ImageName ---> This command does, if you don't have that specified image locally on your dockerd than it pulls from registry and creates a container. But we wont enter into that container.
+
 ---> Docker run -it ImageName ---> This command does, if you don't have that specified image locally on your dockerd than it pulls from registry and creates a container. And the created container will run. (-it means Interactive Terminal).
+
 ---> If we use -it than always new container will be created.
 
 ---> Docker run -it <imageid> ---> This command is used to create a container and enters into it.
+
 ---> Docker ps ---> This command list out the all running containers.
----> Docker ps -a ---> This command list out the containers.
+
+---> Docker ps -a ---> This command list out the all containers.
+
 ---> Docker Start <Containerid/Name> ---> This command starts the stopped container.
+
 Eg:- Docker start cb797348bfbc
+
 ---> Docker Stop <Containerid/Name> ---> This command stops the running container.
+
 Eg:- Docker stop cb797348bfbc
+
 ---> Docker Pause <ContainerId> ---> It pause the running container. It won't take any inputs from client.
+
 ---> Docker unpause <ContainerId> ---> It unpauses the paused container. Then it accepts the inputs from client.
 
 **How to enter into a exited container?
 ---> There are two ways.
-1. Docker Attach <Containerid> ---> After exiting the container we have start that container first. To enter into a container.
+1. Docker Attach <Containerid> ---> After exiting the container we have start that container first. And use attach command, To enter into a container.
+
 Eg:- Docker Attach cb797348bfbc
 
 2. In second way :- Exiting means stopping the container so we have to start that container first. And then use this command.
+
 Syntax:- docker exec -it <ContainerID> /bin/bash
+
 Eg :- Docker exec -it cb797348bfbc /bin/bash
 
 ---> Docker Kill <ContainerId> ---> This command is used to kill the container. Kill action is nothing but exiting from container.
+
 Eg:- Docker kill cb797348bfbc
+
 ---> Docker rm <ContainerId> ---> This command is used to delete the container.
+
 Eg:- Docker rm cb797348bfbc
-** Running container won't be deleted. If you want to delete the running container we have to stop that container are we delete forcely.
+
+** Running container won't be deleted. If you want to delete the running container we have to stop that container or we delete forcely.
+---> It is possible to delete the running container by using force command.
 
 Syntax:- Docker rm -f <ContainerId>
+
 Eg:- Docker rm -f cb797348bfbc
+
+
+Docker File :-
+--------------
+
+---> Docker can build an images automatically by reading the instructions from a dockerfile.
+
+Steps for creating Docker file :-
+--------------------------------
+Step - 1 :- Create a file. Name that file as Dockerfile.
+Eg:- 1. select a location where to create a docker file.
+     2. Go to that location and create a folder. And enter into that folder and now create a dockerfile.
+3. Open that docker file 
+
+Step - 2 :- Add instruction in docker file.
+Eg :- 1. The docker file start with 'FROM'. Describe a base Image.
+     Eg:- From ubuntu
+---> If you do not want to use base image we can also say from SCRATCH
+     Eg:- From SCRATCH
+
+      2. Add 'MAINTAINER'
+      Eg:- MAINTAINER pc <emailId>
+
+      3. RUN apt-get update
+
+      4. CMD ["echo", "hello World....!"] ---> If we want to run something on command line during container creation. 
+
+Qus:- Whats the difference between Run and CMD?
+Ans:- Run gets executed during the buliding of the image.
+      CMD gets executed only when we create a container.
+
+Step - 3 :- Build dockerfile to create image.
+Eg:- 1. use this command to build docker Image from docker file.
+     Syntax:- Docker build /use location of that file.
+     Eg:- docker build /user/desktop
+     Eg:- docker build . ---> If we are already in that location then we use (.) dot.
+
+eg:- docker build -t myimage:1.0 . --->(-t means tag) ---> we used -t for giving a tag.
+
+Step - 4 :- Run image to create container
+
+Eg:- To run the image we use this command. 
+    Syntax :- Docker run <imageId>
+    Eg:- docker run 25egde654
 
 
 
