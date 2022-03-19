@@ -208,6 +208,11 @@ Uses of volumes:-
 4. While deleting the container volume does not delete.
 
 
+---> To create a volume we use this command.
+---> Syntax :- docker volume create <VolumeName>
+---> Eg:- docker volume create myvolume1
+
+
 ---> There are three volume types :-
 1. Anonymous Volumes
 2. Named volumes
@@ -216,7 +221,7 @@ Uses of volumes:-
 ---> To list out the available docker volumes in your system.
 Eg - docker volume ls
 
----> To know when the volume is created.
+---> To know when the volume is created and details about that volume.
 Syntax :- docker inspect <volumeName>
 Eg :- docker inspect d0b6dd17814f95cacfa5564b5306e7e7a983b681caa1e5e513fde49c01920463  ---> This code is alpha numeric code.
 
@@ -224,9 +229,9 @@ Eg :- docker inspect d0b6dd17814f95cacfa5564b5306e7e7a983b681caa1e5e513fde49c019
 
 ---> Anonymous volume is a volume does not have a name. it has a alpha numeric code.
 
----> we use this volume rarely because dont gives the proper information.
+---> we use this volume rarely because it dont gives the proper information.
 
-Syntax :- docker run -it --name <containerName> -v /data1 <ImageName /bin/bash
+Syntax :- docker run -it --name <containerName> -v /folderName <ImageName /bin/bash
 
 Eg:- docker run -it --name pc -v /data1 ubuntu /bin/bash
 
@@ -250,12 +255,34 @@ Eg:- docker volume ls
 
 ---> To do this we have enough permissions.
 
+---> To give permissions to a specific folder we use this command.
+
+Syntax :- chmod 777 <FolderName>
+
+Eg:- chmod 777 <docker>
+
 ---> If you want to share your data amoung different container we use this type of volume.
 
----> Syntax:- docker run -it --name <ContainerName> -v <directory location in host machine,folderName>:</Container folderName> ImageName /bin/bash
+---> Syntax:- docker run -it --name <ContainerName> -v <directory location in host machine,folderName>:</ContainerfolderName> ImageName /bin/bash
 
 
 Eg:- docker run -it --name don -v c/downloads/data1:/data1 ubuntu /bin/bash
+
+
+---> How to delete a docker volume ?
+---> By using this command we can delete a volume
+---> Syntax :- docker volume rm <VolumeName>
+---> Eg:- docker volume rm pc1
+
+
+
+Docker Commit :- This command creates a new image from container's changes.
+
+
+
+
+
+
 
 
 
