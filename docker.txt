@@ -231,11 +231,11 @@ Eg :- docker inspect d0b6dd17814f95cacfa5564b5306e7e7a983b681caa1e5e513fde49c019
 
 ---> we use this volume rarely because it dont gives the proper information.
 
-Syntax :- docker run -it --name <containerName> -v /folderName <ImageName /bin/bash
+Syntax :- docker run -it --name <containerName> -v /ContainerfolderName <ImageName> /bin/bash
 
 Eg:- docker run -it --name pc -v /data1 ubuntu /bin/bash
 
----> (--name means describe the container Name.) (-v means Volume.) (/data1 means describing to create a new directory in container)
+---> (--name means describe the container Name.) (-v means Volume.) (/ContainerfolderName means new folder creates inside the container.)
 
 
 ---> Named Volumes :- Create a container with volume name which is mounted  as /data1 on container.
@@ -250,6 +250,7 @@ Eg:- docker volume ls
 
 ---> Eg:- docker run -it --name pc -v pc19:/data1 ubuntu /bin/bash
 
+---> Note:- If we don't put (:) then it creates a anonymous volume.
 
 --->Host Volumes :- In host volume we won't create a volume, we will just create a directory in your host system will map this directory to the container directory.
 
@@ -269,6 +270,18 @@ Eg:- chmod 777 <docker>
 Eg:- docker run -it --name don -v c/downloads/data1:/data1 ubuntu /bin/bash
 
 
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Note:- In this type of volume we should give the exact location. if we dont give exact location than it wont map the volume to container.     |
+
+Syntax:- docker run -it --name <ContainerName> -v <directory location in host machine,folderName>:</ContainerfolderName> ImageName /bin/bash  |
+
+Eg:-  docker run -it --name mycont3 -v c/users/admin.exel/desktop/docker:/db3 ubuntu /bin/bash                                                |
+
+---> (-v directory location in host machine means we have give the exact location to that folder)                                             |
+
+---> (FoderName Means we have mention the folder name that we created within the  host machine location.)                                     |
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
 ---> How to delete a docker volume ?
 ---> By using this command we can delete a volume
 ---> Syntax :- docker volume rm <VolumeName>
@@ -280,10 +293,69 @@ Docker Commit :- This command creates a new image from container's changes.
 
 
 
+Linking Docker Containers :- 
+------------------------
+
+---> Linking is a legacy feature of docker, which is used to connect multiple containers.
+
+---> With linking,containers can communicate amoung eachother.
+
+---> Name of containers,is an  important aspect while linking containers.
+
+---> Syntax ---> docker run -it --link <ContainerName> -d <ImageName>
+
+Process For Linking :- 
+
+1. First we have to create a container with name. Create that in deteached Mode.
+
+--->Sytax :- docker run -it --name <ContainerName> -d <ImageName>
+
+---> Eg:- docker run -it --name container1 -d ubuntu
+
+2. Now we can create a second container and link that container with first one. To do that we use this command.
+
+---> Syntax :- docker run -it --name <ContainerName> --link <ContainerName> -d <ImageName>
+
+---> Eg :- docker run -it --name container2 --link container1 -d ubuntu
+
+---> (--Name <ContainerName> ---> means creating a new container and giving a name to container.) 
+
+(--Link this keyword is used to combine the two containers.) 
+
+(--link <ContainerName> ---> Here we give the container name that we want to link.)
 
 
+3. Enter into the second container. And run this command
+
+Eg:- cat /etc/hosts ---> This command list out the containers IP addresses.
+
+4. Now run the ping command.
+
+---> to run ping command first we have to update. To do we use this command 
+
+---> Eg :- apt-get update
+
+---> After running the above command, now install the ping. to install ping we use this command.
+
+---> Eg :- apt-get install ping ----> Output for this command is, It give the versions of ping and choose one and install it.
+
+---> Eg :- apt-get install iputils-ping
 
 
+5. ping containerName :- This command is use to check weather containers are linked with each other or Not.
+
+---> Eg :- Ping pc19
 
 
+-----------------------------------------------------------------------------
 
+---> This command is used to create a container and run that container in background.
+
+---> Stntax ---> docker run -it --name <ContainerName> -d <ImageName>
+
+---> Eg:- docker run -it --name container1 -d ubuntu
+
+---> (-d Means Deteached Mode.)
+
+-----------------------------------------------------------------------------
+what if we use containerid instead of containername?
