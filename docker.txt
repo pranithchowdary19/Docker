@@ -225,6 +225,8 @@ Eg - docker volume ls
 Syntax :- docker inspect <volumeName>
 Eg :- docker inspect d0b6dd17814f95cacfa5564b5306e7e7a983b681caa1e5e513fde49c01920463  ---> This code is alpha numeric code.
 
+---> It won't possible to delete volume while volume is in use.
+
 ---> Anonymous Volume :- Create a container with an anonymous volume which is mounted as /data1 on container. In this case we mention container directory name.On host system it maps to a random hash directory under /var/lib/dockerdir.
 
 ---> Anonymous volume is a volume does not have a name. it has a alpha numeric code.
@@ -302,7 +304,6 @@ Linking Docker Containers :-
 
 ---> Name of containers,is an  important aspect while linking containers.
 
----> Syntax ---> docker run -it --link <ContainerName> -d <ImageName>
 
 Process For Linking :- 
 
@@ -358,4 +359,71 @@ Eg:- cat /etc/hosts ---> This command list out the containers IP addresses.
 ---> (-d Means Deteached Mode.)
 
 -----------------------------------------------------------------------------
-what if we use containerid instead of containername?
+Qus :- what if we use containerid instead of containername?
+Ans :- Its working we can give containerid also.
+
+
+Docker Compose :-  Compose is a tool for defining and running multi-container docker applications.
+--------------
+
+---> Use yaml files to configure application services.
+
+---> We can start all services with a single command.
+---> Eg :- docker-compose up
+
+---> We can stop all services with a single command.
+---> Eg :- docker-compose down
+
+---> We can scale up selected services when requried.
+
+
+Process to Compose :-
+---------------------
+
+1. First we have to install the docker compose. To check wheather it installed or not we use this command.
+
+---> Eg:- docker-compose -v
+
+
+2. Create a docker compose file at any location on your system. And name that file as docker-compose.yml or compose.yml (yml ---> It describes the file type. It is an extention to a file.)
+
+---> Open that file and write the services requried.after opening the file first we describe the services keyword.
+
+services:
+
+  web:
+    image: nginx
+    ports:
+    - "9090:80"
+
+  database:
+    image: redis
+
+---> while writing the code indentation is compulsory.
+
+---> When we describe the ports and we want to see the ports on live we use this address in your browser.
+
+---> Eg:- localhost:9090
+
+3. Check the validity of file by using this command.
+Eg :- docker-compose config
+
+---> While using this command if we get any errors than the yml file is not going to work.
+---> If we don't get any errors than we can goto step 4.
+ 
+4. Run docker-compose.yml file by using this command.
+Eg :- docker-compose up -d
+
+---> This command is used to run that yml file and create the containers to applications.
+
+5. To bring down the application by using this command.
+
+Eg :- docker-compose down 
+
+
+
+---> if we want to scale some particular services then, we use scale flag (--scale). 
+
+Syntax :- docker-compose up -d --scale <Describe Services>
+
+Eg :- docker-compose up -d --scale database=3
