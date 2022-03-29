@@ -427,3 +427,42 @@ Eg :- docker-compose down
 Syntax :- docker-compose up -d --scale <Describe Services>
 
 Eg :- docker-compose up -d --scale database=3
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+---> docker ps -f "status=running" ---> This command is used to show the running containers.
+
+---> docker ps  -f "status=exited" ---> This command is used to show the stopped containers.
+
+
+---> Docker logs :- Fetch th logs of a container.
+
+---> In this command we can use different type of options.
+
+---> Syntax :- docker logs [option] <ContainerId>
+
+---> Eg :- docker logs --tail 10 080ff044b8e8
+
+---> (--tail means its show the lines from last. And we have to describe the lines that we want.if i want 10 line i have to describe the 10 there.)
+
+Options :- 
+----------
+
+1. --details ---> It provides the extra details provided to logs.
+
+---> Syntax :- dicker logs --details <ContainerId>
+
+---> Eg :- docker logs --details 080ff044b8e8
+
+
+2. --tail ---> It shows the numbers of lines to show from end of the logs.
+
+---> Synatax :- docker logs --tail <Tailnumber> <ContainerId>
+
+---> Eg:- docker logs --tail 10 080ff044b8e8
+
+
+
+
